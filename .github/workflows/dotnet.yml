@@ -18,20 +18,20 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies for Api project
       run: dotnet restore
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Api
+      working-directory: src/AspNetCoreAPI-GitHubAction.Api
     - name: Build Api project
       run: dotnet build --no-restore
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Api
+      working-directory: src/AspNetCoreAPI-GitHubAction.Api
     - name: Test Api project
       run: dotnet test --no-build --verbosity normal
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Api
+      working-directory: src/AspNetCoreAPI-GitHubAction.Api
 
     - name: Restore dependencies for Test project
       run: dotnet restore
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Test
+      working-directory: src/AspNetCoreAPI-GitHubAction.Test
     - name: Build Test project
       run: dotnet build --no-restore
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Test
+      working-directory: src/AspNetCoreAPI-GitHubAction.Test
     - name: Test Test project
       run: dotnet test --no-build --verbosity normal
-      working-directory: C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction\src\AspNetCoreAPI-GitHubAction.Test
+      working-directory: src/AspNetCoreAPI-GitHubAction.Test
