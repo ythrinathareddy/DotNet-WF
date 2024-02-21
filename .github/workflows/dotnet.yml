@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Change working directory
-      run: cd src/AspNetCoreAPI-GitHubAction.Api
+      run: cd C:\\Users\\Admin\\Projects\\AspNetCoreAPI\\AspNetCoreAPI-GitHubAction\\src\\AspNetCoreAPI-GitHubAction.Api
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
