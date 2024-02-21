@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -11,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +17,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Change working directory
-      run: cd C:\Users\Admin\Projects\AspNetCoreAPI\AspNetCoreAPI-GitHubAction
+      run: cd src/AspNetCoreAPI-GitHubAction.Api
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
