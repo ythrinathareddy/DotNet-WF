@@ -37,6 +37,6 @@ jobs:
     - name: Project publish
       run: dotnet publish -c Release src\AspNetCoreAPI-GitHubAction.Api\AspNetCoreAPI-GitHubAction.Api.csproj -o ${{env.DOTNET_ROOT}}/AspNetCoreAPI
 
-    #- name: Deploy to IIS
-      #run: |
-        #powershell -ExecutionPolicy Bypass -File .\path\to\your\script.ps1
+    - name: Deploy to IIS
+      run: |
+        powershell -ExecutionPolicy Bypass -File .\path\to\your\script.ps1
