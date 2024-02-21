@@ -22,3 +22,8 @@ jobs:
       run: dotnet build --no-restore src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
     - name: Test Api project
       run: dotnet test --no-build --verbosity normal src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
+
+    - name: Publish Package
+      run: |
+        dotnet pack src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj --output nupkgs
+        dotnet nuget push nupkgs/*.nupkg --source "github" --api-key ${{ secrets.DotNet_Token }}
