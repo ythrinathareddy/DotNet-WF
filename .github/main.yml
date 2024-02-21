@@ -1,0 +1,67 @@
+name: AspNetCoreAPI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:    
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build with dotnet
+      run: dotnet build src\AspNetCoreAPI-GitHubAction.Api\AspNetCoreAPI-GitHubAction.Api.csproj --configuration Release
+
+  test:
+    needs: build
+    runs-on: [self-hosted]
+
+    steps:
+    - name: Test
+      run: dotnet test src\AspNetCoreAPI-GitHubAction.Test
+
+  deploy:
+    needs: test
+    runs-on: [self-hosted]
+    
+    steps:
+    - name: Project publish
+      run: dotnet publish -c Release src\AspNetCoreAPI-GitHubAction.Api\AspNetCoreAPI-GitHubAction.Api.csproj -o ${{env.DOTNET_ROOT}}/AspNetCoreAPI
+
+    - name: Deploy to IIS
+      run: |
+        if ((Get-WebSiteState -Name AspNetCoreAPI).Value -eq "Started")
+        {
+            Stop-WebSite -Name AspNetCoreAPI
+            echo "Stopped Website AspNetCoreAPI"
+        }
+        if ((Get-WebAppPoolState -Name AspNetCoreAPI).Value -eq "Started")
+        {
+            Stop-WebAppPool -Name AspNetCoreAPI
+            echo "Stopped Application Pool AspNetCoreAPI"
+        }
+        
+        Start-Sleep -s 15        
+        Copy-Item ${{env.DOTNET_ROOT}}/AspNetCoreAPI/* C:\inetpub\wwwroot\AspNetCoreAPI -Recurse -Force
+        
+        if ((Get-WebSiteState -Name AspNetCoreAPI).Value -eq "Stopped")
+        {
+            Start-WebSite -Name AspNetCoreAPI
+            echo "Started Website AspNetCoreAPI"
+        }
+        if ((Get-WebAppPoolState -Name AspNetCoreAPI).Value -eq "Stopped")
+        {
+            Start-WebAppPool -Name AspNetCoreAPI
+            echo "Started Application Pool AspNetCoreAPI"
+        }
+        
+        if ($lastexitcode -lt 8) { $global:lastexitcode = 0 }
