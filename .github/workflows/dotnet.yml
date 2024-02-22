@@ -45,14 +45,8 @@ jobs:
       with:
         name: nuget-packages
 
-    - name: Debug
-      run: ls $HOME/Desktop/
-
     - name: Create destination directory
-      run: mkdir -p $HOME/Desktop/pop/
-
-    - name: Debug
-      run: ls $HOME/Desktop/
+      run: mkdir -p /home/praveshp/Desktop/pop/
 
     - name: Move NuGet packages to destination directory
-      run: mv nupkgs/*.nupkg $HOME/Desktop/pop/
+      run: mv nupkgs/*.nupkg /home/praveshp/Desktop/pop/
