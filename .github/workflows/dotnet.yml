@@ -45,5 +45,8 @@ jobs:
       with:
         name: nuget-packages
 
+    - name: List NuGet packages
+      run: ls $HOME/Desktop/pop/
+
     - name: Move NuGet packages to destination directory
       run: mv nupkgs/*.nupkg $HOME/Desktop/pop/
