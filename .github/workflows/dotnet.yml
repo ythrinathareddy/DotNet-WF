@@ -30,6 +30,9 @@ jobs:
     - name: Publish package
       run: dotnet nuget push nupkgs/*.nupkg --source "https://nuget.pkg.github.com/pravesh-77/index.json" --api-key ${{ secrets.DotNet_Token }} --skip-duplicate
 
+    - name: Create destination folder
+      run: mkdir -p $HOME/Desktop/.net\ packages/
+
     - name: Move package artifact to specific folder
-      run: mv nupkgs/*.nupkg $HOME/Desktop/dotnet\ packages/
+      run: mv nupkgs/*.nupkg $HOME/Desktop/.net\ packages/
     
