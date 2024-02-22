@@ -49,5 +49,6 @@ jobs:
       run: mkdir -p $HOME/Desktop/.net\ packages/
 
     - name: Extract NuGet packages
-      run: tar -xvf nuget-packages.zip -C $HOME/Desktop/.net\ packages/
+      run: unzip -qq nuget-packages.zip -d $HOME/Desktop/.net\ packages/
+
     
