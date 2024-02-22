@@ -46,7 +46,9 @@ jobs:
         name: nuget-packages
 
     - name: Create destination folder
-      run: mkdir C:\packages
+      run: New-Item -ItemType Directory -Path "C:\packages"
+      shell: pwsh
+
 
 
     #- name: Extract NuGet packages
