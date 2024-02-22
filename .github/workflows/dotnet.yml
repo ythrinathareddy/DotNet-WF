@@ -27,21 +27,14 @@ jobs:
       run: |
         dotnet pack src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj --output nupkgs
         ls nupkgs # List the contents of the output directory to verify that packages were generated
-
-    - name: Create destination folder
-      run: mkdir -p $HOME/Desktop/packages
-
-    - name: Move NuGet packages to destination folder
-      run: mv nupkgs/*.nupkg $HOME/Desktop/packages
-
     - name: Publish package
-      run: dotnet nuget push $HOME/Desktop/packages/*.nupkg --source "https://nuget.pkg.github.com/pravesh-77/index.json" --api-key ${{ secrets.DotNet_Token }} --skip-duplicate
+      run: dotnet nuget push nupkgs/*.nupkg --source "https://nuget.pkg.github.com/pravesh-77/index.json" --api-key ${{ secrets.DotNet_Token }} --skip-duplicate
 
     - name: Archive NuGet packages
       uses: actions/upload-artifact@v2
       with:
         name: nuget-packages
-        path: $HOME/Desktop/packages
+        path: nupkgs
 
   download:
     needs: build
@@ -51,4 +44,9 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: nuget-packages
-        path: $HOME/Desktop/packages
+
+    - name: Create destination directory
+      run: mkdir -p $HOME/packages
+
+    - name: Move NuGet packages to destination directory
+      run: mv nupkgs/*.nupkg $HOME/packages/
