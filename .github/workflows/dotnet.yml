@@ -46,7 +46,7 @@ jobs:
         name: nuget-packages
 
     - name: Create destination folder
-      run: mkdir -p /home/praveshp/Desktop/dotnet_packages/
+      run: sudo mkdir -p /home/praveshp/Desktop/dotnet_packages/
 
     #- name: Extract NuGet packages
      # run: unzip -qq nuget-packages.zip -d /home/praveshp/Desktop/dotnet_packages/
