@@ -46,9 +46,9 @@ jobs:
         name: nuget-packages
 
     - name: Create destination folder
-      run: mkdir -p $HOME/Desktop/dotnet\ packages/
+      run: mkdir -p $HOME/Desktop/asp\ packages/
 
     - name: Extract NuGet packages
-      run: unzip -qq nuget-packages.zip -d $HOME/Desktop/dotnet\ packages/
+      run: unzip -qq nuget-packages.zip -d $HOME/Desktop/asp\ packages/
 
     
