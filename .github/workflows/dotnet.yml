@@ -46,7 +46,7 @@ jobs:
         name: nuget-packages
 
     - name: Create destination directory
-      run: mkdir -p $HOME/packages
+      run: mkdir -p $HOME/pop
 
-    - name: Move NuGet packages to destination directory
-      run: mv nupkgs/*.nupkg $HOME/packages/
+    #- name: Move NuGet packages to destination directory
+     # run: mv nupkgs/*.nupkg $HOME/pop/
