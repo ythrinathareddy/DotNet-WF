@@ -27,6 +27,9 @@ jobs:
     - name: Test Api project
       run: dotnet test --no-build --verbosity normal src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
 
+    - name: Install xmlstarlet
+      run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+
     - name: Update package version
       run: xmlstarlet ed --inplace -u '//Version' -v '1.0.1' src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
 
