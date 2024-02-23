@@ -27,6 +27,10 @@ jobs:
     - name: Test Api project
       run: dotnet test --no-build --verbosity normal src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
 
+    - name: Update package version
+      run: xmlstarlet ed --inplace -u '//Version' -v '1.0.1' src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj
+
+
     - name: Generate NuGet packages
       run: |
         dotnet pack src/AspNetCoreAPI-GitHubAction.Api/AspNetCoreAPI-GitHubAction.Api.csproj --output nupkgs
